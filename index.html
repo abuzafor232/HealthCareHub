@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare AI - Mobile App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Authentication Screen -->
+        <div id="authScreen" class="screen active">
+            <div class="auth-screen">
+                <div class="auth-card fade-in">
+                    <div class="logo">
+                        <h1>HealthCareHub</h1>
+                        <p>Smart Healthcare Solutions</p>
+                    </div>
+                    
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label>Select Your Role</label>
+                            <div class="role-selector">
+                                <div class="role-btn active" data-role="patient">Patient</div>
+                                <div class="role-btn" data-role="provider">Provider</div>
+                                <div class="role-btn" data-role="admin">Admin</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Sign In</button>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <a href="#" style="color: #667eea; text-decoration: none;">Don't have an account? Sign up</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main App Screen -->
+        <div id="appScreen" class="screen">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-top">
+                    <div class="user-avatar">JD</div>
+                    <div class="notification-bell">🔔</div>
+                </div>
+                <div class="welcome-text">
+                    <h2>Good Morning, John</h2>
+                    <p>How are you feeling today?</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="quick-action" onclick="openModal('scheduleModal')">
+                    <div class="quick-action-icon">📅</div>
+                    <h3>Schedule Appointment</h3>
+                </div>
+                <div class="quick-action" onclick="openModal('symptomModal')">
+                    <div class="quick-action-icon">🩺</div>
+                    <h3>Symptom Check</h3>
+                </div>
+                <div class="quick-action" onclick="openModal('telehealthModal')">
+                    <div class="quick-action-icon">📹</div>
+                    <h3>Video Consult</h3>
+                </div>
+                <div class="quick-action" onclick="showScreen('prescriptionScreen')">
+                    <div class="quick-action-icon">💊</div>
+                    <h3>Prescriptions</h3>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Upcoming Appointments -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Upcoming Appointments</h2>
+                        <a href="#" class="see-all">See all</a>
+                    </div>
+                    
+                    <div class="card appointment-card">
+                        <div class="appointment-time">Today, 2:30 PM</div>
+                        <div class="appointment-doctor">Dr. Sarah Johnson</div>
+                        <div class="appointment-type">General Consultation • Video Call</div>
+                    </div>
+                    
+                    <div class="card appointment-card">
+                        <div class="appointment-time">Tomorrow, 10:00 AM</div>
+                        <div class="appointment-doctor">Dr. Michael Chen</div>
+                        <div class="appointment-type">Cardiology • In-Person</div>
+                    </div>
+                </div>
+
+                <!-- Health Metrics -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Health Overview</h2>
+                        <a href="#" class="see-all" onclick="showScreen('dashboardScreen')">View all</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">🎯 Health Score: 85/100</h4>
+                        <p style="color: #666; font-size: 14px; line-height: 1.5;">
+                            Your overall health is good. Keep maintaining regular exercise and medication compliance.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Recent Messages -->
+                <div class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Messages</h2>
+                        <a href="#" class="see-all">View all</a>
+                    </div>
+                    
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div>
+                                <h4 style="font-weight: 600; margin-bottom: 5px;">Dr. Sarah Johnson</h4>
+                                <p style="color: #666; font-size: 14px;">Please remember to take your medication twice daily...</p>
+                            </div>
+                            <span style="color: #667eea; font-size: 12px;">2h ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Assistant -->
+            <div class="ai-assistant" onclick="openModal('aiModal')">🤖</div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <div class="nav-items">
+                    <div class="nav-item active" onclick="showScreen('appScreen')">
+                        <span>🏠</span>
+                        <small>Home</small>
+                    </div>
+                    <div class="nav-item" onclick="showScreen('recordsScreen')">
+                        <span>📋</span>
+                        <small>Records</small>
+                    </div>
+                    <div class="nav-item" onclick="showScreen('dashboardScreen')">
+                        <span>📊</span>
+                        <small>Analytics</small>
+                    </div>
+                    <div class="nav-item" onclick="showScreen('profileScreen')">
+                        <span>👤</span>
+                        <small>Profile</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Screen -->
+        <div id="dashboardScreen" class="screen">
+            <div class="header">
+                <div class="header-top">
+                    <button onclick="showScreen('appScreen')" style="background: none; border: none; color: white; font-size: 20px;">←</button>
+                    <h2 style="margin: 0;">Health Analytics</h2>
+                    <div></div>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <div class="section">
+                    <h2 class="section-title">Vital Signs Trends</h2>
+                    <div class="chart-container">
+                        📈 Interactive Health Charts
+                        <br><small>Blood Pressure, Heart Rate, Weight Tracking</small>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">Health Insights</h2>
+                    <div class="card">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">🎯 Health Score: 85/100</h4>
+                        <p style="color: #666; font-size: 14px; line-height: 1.5;">
+                            Your overall health is good. Keep maintaining regular exercise and medication compliance.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">Activity Summary</h2>
+                    <div class="card">
+                        <div class="health-metric">
+                            <div class="metric-info">
+                                <h4>Steps Today</h4>
+                                <div class="metric-value">8,245</div>
+                            </div>
+                            <div class="metric-trend">↑ +12%</div>
+                        </div>
+                        <div class="health-metric">
+                            <h4>Sleep Quality</h4>
+                            <div class="metric-value">7.5h</div>
+                            <div class="metric-trend">↑ Good</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medical Records Screen -->
+        <div id="recordsScreen" class="screen">
+            <div class="header">
+                <div class="header-top">
+                    <button onclick="showScreen('appScreen')" style="background: none; border: none; color: white; font-size: 20px;">←</button>
+                    <h2 style="margin: 0;">Medical Records</h2>
+                    <div></div>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <div class="section">
+                    <h2 class="section-title">Recent Records</h2>
+                    
+                    <div class="record-item">
+                        <div class="record-date">March 15, 2024</div>
+                        <div class="record-title">Annual Physical Examination</div>
+                        <p style="color: #666; font-size: 14px;">Complete health checkup with blood work and vital signs assessment.</p>
+                    </div>
+                    
+                    <div class="record-item">
+                        <div class="record-date">March 10, 2024</div>
+                        <div class="record-title">Cardiology Consultation</div>
+                        <p style="color: #666; font-size: 14px;">Follow-up appointment for heart health monitoring.</p>
+                    </div>
+                    
+                    <div class="record-item">
+                        <div class="record-date">February 28, 2024</div>
+                        <div class="record-title">Lab Results</div>
+                        <p style="color: #666; font-size: 14px;">Blood chemistry panel - All values within normal range.</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">Immunizations</h2>
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>COVID-19 Vaccine</span>
+                            <span style="color: #2ed573;">✓ Current</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>Annual Flu Shot</span>
+                            <span style="color: #2ed573;">✓ Current</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Tetanus</span>
+                            <span style="color: #ffa726;">⚠ Due Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prescriptions Screen -->
+        <div id="prescriptionScreen" class="screen">
+            <div class="header">
+                <div class="header-top">
+                    <button onclick="showScreen('appScreen')" style="background: none; border: none; color: white; font-size: 20px;">←</button>
+                    <h2 style="margin: 0;">Prescriptions</h2>
+                    <div></div>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <div class="section">
+                    <h2 class="section-title">Active Medications</h2>
+                    
+                    <div class="prescription-item">
+                        <div class="prescription-info">
+                            <h4>Lisinopril 10mg</h4>
+                            <div class="prescription-dosage">Once daily • 30 days supply</div>
+                        </div>
+                        <button class="refill-btn" onclick="openModal('paymentModal')">Refill</button>
+                    </div>
+                    
+                    <div class="prescription-item">
+                        <div class="prescription-info">
+                            <h4>Metformin 500mg</h4>
+                            <div class="prescription-dosage">Twice daily • 30 days supply</div>
+                        </div>
+                        <button class="refill-btn" onclick="openModal('paymentModal')">Refill</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div id="profileScreen" class="screen">
+            <div class="header">
+                <div class="header-top">
+                    <button onclick="showScreen('appScreen')" style="background: none; border: none; color: white; font-size: 20px;">←</button>
+                    <h2 style="margin: 0;">Profile</h2>
+                    <div></div>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <div class="section">
+                    <div class="card" style="text-align: center; padding: 30px;">
+                        <div class="user-avatar" style="width: 80px; height: 80px; margin: 0 auto 20px; font-size: 32px;">JD</div>
+                        <h3 style="margin-bottom: 5px;">John Doe</h3>
+                        <p style="color: #666; margin-bottom: 20px;">john.doe@email.com</p>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">Account Settings</h2>
+                    
+                    <div class="card" style="margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0;">
+                            <span>Personal Information</span>
+                            <span style="color: #667eea;">Edit</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0;">
+                            <span>Notification Preferences</span>
+                            <span style="color: #667eea;">Manage</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0;">
+                            <span>Privacy Settings</span>
+                            <span style="color: #667eea;">Configure</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0;">
+                            <span>Help & Support</span>
+                            <span style="color: #667eea;">Contact</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <button class="btn-primary" onclick="logout()" style="background: linear-gradient(135deg, #ff4757, #ff3838);">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Assistant -->
+        <div class="ai-assistant" onclick="openModal('aiModal')">🤖</div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-items">
+                <div class="nav-item active" onclick="showScreen('appScreen')">
+                    <span>🏠</span>
+                    <small>Home</small>
+                </div>
+                <div class="nav-item" onclick="showScreen('recordsScreen')">
+                    <span>📋</span>
+                    <small>Records</small>
+                </div>
+                <div class="nav-item" onclick="showScreen('dashboardScreen')">
+                    <span>📊</span>
+                    <small>Analytics</small>
+                </div>
+                <div class="nav-item" onclick="showScreen('profileScreen')">
+                    <span>👤</span>
+                    <small>Profile</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant" onclick="openModal('aiModal')">🤖</div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-items">
+            <div class="nav-item active" onclick="showScreen('appScreen')">
+                <span>🏠</span>
+                <small>Home</small>
+            </div>
+            <div class="nav-item" onclick="showScreen('recordsScreen')">
+                <span>📋</span>
+                <small>Records</small>
+            </div>
+            <div class="nav-item" onclick="showScreen('dashboardScreen')">
+                <span>📊</span>
+                <small>Analytics</small>
+            </div>
+            <div class="nav-item" onclick="showScreen('profileScreen')">
+                <span>👤</span>
+                <small>Profile</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant" onclick="openModal('aiModal')">🤖</div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-items">
+            <div class="nav-item active" onclick="showScreen('appScreen')">
+                <span>🏠</span>
+                <small>Home</small>
+            </div>
+            <div class="nav-item" onclick="showScreen('recordsScreen')">
+                <span>📋</span>
+                <small>Records</small>
+            </div>
+            <div class="nav-item" onclick="showScreen('dashboardScreen')">
+                <span>📊</span>
+                <small>Analytics</small>
+            </div>
+            <div class="nav-item" onclick="showScreen('profileScreen')">
+                <span>👤</span>
+                <small>Profile</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Assistant -->
+    <div class="ai-assistant" onclick="openModal('aiModal')">🤖</div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-items">
+            <div class="nav-item active" onclick="showScreen('appScreen')">
+                <span>🏠</span>
+                <small>Home</small>
+            </div>
+            <div class="nav-item" onclick="showScreen('recordsScreen')">
+                <span>📋</span>
+                <small>Records</small>
+            </div>
+            <div class="nav-item" onclick="showScreen('dashboardScreen')">
+                <span>📊</span>
+                <small>Analytics</small>
+            </div>
+            <div class="nav-item" onclick="showScreen('profileScreen')">
+                <span>👤</span>
+                <small>Profile</small>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
