@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCareHub - AI-Driven Virtual Medical Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">HealthCareHub</div>
+            <div class="tagline">AI-Driven Virtual Medical Assistant</div>
+        </div>
+
+        <!-- Login Section -->
+        <div id="loginSection" class="content active">
+            <div class="login-section">
+                <h2 class="login-title">Welcome Back</h2>
+                <form class="login-form">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" placeholder="Enter your password">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Login as</label>
+                        <select id="userRole" class="form-input">
+                            <option value="patient">Patient</option>
+                            <option value="healthcare">Healthcare Provider</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn" onclick="login()">Login</button>
+                    <button type="button" class="btn" style="background: linear-gradient(135deg, #10b981, #059669); margin-top: 10px;" onclick="window.location.href='register.html'">Register</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Patient Dashboard -->
+        <div id="patientDashboard" class="dashboard">
+            <div class="dashboard-header">
+                <button class="logout-btn" onclick="logout()">Logout</button>
+                <div class="welcome-text">Hello, John Doe</div>
+                <div class="user-role">Patient Portal</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Upcoming Appointments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Prescriptions</div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <h3 class="section-title">Quick Actions</h3>
+                <button class="quick-action-btn emergency">🚨 Emergency Alert</button>
+                <button class="quick-action-btn">📅 Book Appointment</button>
+                <button class="quick-action-btn">💬 Chat with AI Assistant</button>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-icon">🏥</div>
+                    <div class="menu-title">Appointments</div>
+                    <div class="menu-desc">Schedule & manage visits</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">📋</div>
+                    <div class="menu-title">Health Records</div>
+                    <div class="menu-desc">View medical history</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">💊</div>
+                    <div class="menu-title">Prescriptions</div>
+                    <div class="menu-desc">Medication management</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">🩺</div>
+                    <div class="menu-title">Symptom Checker</div>
+                    <div class="menu-desc">AI-powered assessment</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">📹</div>
+                    <div class="menu-title">Telehealth</div>
+                    <div class="menu-desc">Virtual consultations</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">💬</div>
+                    <div class="menu-title">Messages</div>
+                    <div class="menu-desc">Secure communication</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">💳</div>
+                    <div class="menu-title">Billing</div>
+                    <div class="menu-desc">Payments & insurance</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">📚</div>
+                    <div class="menu-title">Health Library</div>
+                    <div class="menu-desc">Medical information</div>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h3 class="section-title">Recent Activity</h3>
+                <div class="activity-item">
+                    <div class="activity-icon">📅</div>
+                    <div class="activity-details">
+                        <div class="activity-title">Appointment scheduled with Dr. Smith</div>
+                        <div class="activity-time">2 hours ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">💊</div>
+                    <div class="activity-details">
+                        <div class="activity-title">New prescription added</div>
+                        <div class="activity-time">1 day ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">📋</div>
+                    <div class="activity-details">
+                        <div class="activity-title">Lab results available</div>
+                        <div class="activity-time">2 days ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Healthcare Provider Dashboard -->
+        <div id="healthcareDashboard" class="dashboard">
+            <div class="dashboard-header">
+                <button class="logout-btn" onclick="logout()">Logout</button>
+                <div class="welcome-text">Dr. Sarah Wilson</div>
+                <div class="user-role">Healthcare Provider</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label">Today's Patients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Pending Reviews</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">156</div>
+                    <div class="stat-label">Total Patients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <h3 class="section-title">Quick Actions</h3>
+                <button class="quick-action-btn">👥 View Today's Schedule</button>
+                <button class="quick-action-btn">📋 Add Patient Notes</button>
+                <button class="quick-action-btn">💊 Prescribe Medication</button>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-icon">👥</div>
+                    <div class="menu-title">Patient List</div>
+                    <div class="menu-desc">Manage patient roster</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">📅</div>
+                    <div class="menu-title">Schedule</div>
+                    <div class="menu-desc">Appointment management</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">📋</div>
+                    <div class="menu-title">Medical Records</div>
+                    <div class="menu-desc">EHR system access</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">🩺</div>
+                    <div class="menu-title">Diagnosis Tools</div>
+                    <div class="menu-desc">AI-assisted diagnosis</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">💊</div>
+                    <div class="menu-title">Prescriptions</div>
+                    <div class="menu-desc">Digital prescribing</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">📹</div>
+                    <div class="menu-title">Telehealth</div>
+                    <div class="menu-desc">Virtual consultations</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">📊</div>
+                    <div class="menu-title">Analytics</div>
+                    <div class="menu-desc">Performance insights</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">💬</div>
+                    <div class="menu-title">Messages</div>
+                    <div class="menu-desc">Patient communication</div>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h3 class="section-title">Recent Activity</h3>
+                <div class="activity-item">
+                    <div class="activity-icon">👤</div>
+                    <div class="activity-details">
+                        <div class="activity-title">Consultation with John Doe completed</div>
+                        <div class="activity-time">30 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">💊</div>
+                    <div class="activity-details">
+                        <div class="activity-title">Prescription sent to pharmacy</div>
+                        <div class="activity-time">1 hour ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">📋</div>
+                    <div class="activity-details">
+                        <div class="activity-title">Lab results reviewed</div>
+                        <div class="activity-time">2 hours ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminDashboard" class="dashboard">
+            <div class="dashboard-header">
+                <button class="logout-btn" onclick="logout()">Logout</button>
+                <div class="welcome-text">Admin Panel</div>
+                <div class="user-role">System Administrator</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1,245</div>
+                    <div class="stat-label">Total Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">89</div>
+                    <div class="stat-label">Healthcare Providers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">99.8%</div>
+                    <div class="stat-label">System Uptime</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3,456</div>
+                    <div class="stat-label">Monthly Appointments</div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <h3 class="section-title">Quick Actions</h3>
+                <button class="quick-action-btn">👥 Add New User</button>
+                <button class="quick-action-btn">🔒 System Security Check</button>
+                <button class="quick-action-btn">📊 Generate Reports</button>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-icon">👥</div>
+                    <div class="menu-title">User Management</div>
+                    <div class="menu-desc">Manage all system users</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">🏥</div>
+                    <div class="menu-title">Provider Management</div>
+                    <div class="menu-desc">Healthcare provider oversight</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">📊</div>
+                    <div class="menu-title">Analytics Dashboard</div>
+                    <div class="menu-desc">System performance metrics</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">🔒</div>
+                    <div class="menu-title">Security Center</div>
+                    <div class="menu-desc">HIPAA compliance & security</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">⚙️</div>
+                    <div class="menu-title">System Settings</div>
+                    <div class="menu-desc">Configuration management</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">🤖</div>
+                    <div class="menu-title">AI Model Management</div>
+                    <div class="menu-desc">ML model configuration</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">💳</div>
+                    <div class="menu-title">Billing & Payments</div>
+                    <div class="menu-desc">Financial system oversight</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon">📋</div>
+                    <div class="menu-title">Audit Logs</div>
+                    <div class="menu-desc">System activity monitoring</div>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h3 class="section-title">System Activity</h3>
+                <div class="activity-item">
+                    <div class="activity-icon">👤</div>
+                    <div class="activity-details">
+                        <div class="activity-title">New healthcare provider registered</div>
+                        <div class="activity-time">15 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">🔒</div>
+                    <div class="activity-details">
+                        <div class="activity-title">Security audit completed</div>
+                        <div class="activity-time">2 hours ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">🤖</div>
+                    <div class="activity-details">
+                        <div class="activity-title">AI model updated</div>
+                        <div class="activity-time">4 hours ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="bottom-nav-item">
+                <div class="bottom-nav-icon">🏠</div>
+                <div class="bottom-nav-text">Home</div>
+            </div>
+            <div class="bottom-nav-item">
+                <div class="bottom-nav-icon">📅</div>
+                <div class="bottom-nav-text">Schedule</div>
+            </div>
+            <div class="bottom-nav-item">
+                <div class="bottom-nav-icon">💬</div>
+                <div class="bottom-nav-text">Messages</div>
+            </div>
+            <div class="bottom-nav-item">
+                <div class="bottom-nav-icon">👤</div>
+                <div class="bottom-nav-text">Profile</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const role = document.getElementById('userRole').value;
+            document.getElementById('loginSection').classList.remove('active');
+            
+            if (role === 'patient') {
+                document.getElementById('patientDashboard').classList.add('active');
+            } else if (role === 'healthcare') {
+                document.getElementById('healthcareDashboard').classList.add('active');
+            } else if (role === 'admin') {
+                document.getElementById('adminDashboard').classList.add('active');
+            }
+        }
+
+        function logout() {
+            document.getElementById('patientDashboard').classList.remove('active');
+            document.getElementById('healthcareDashboard').classList.remove('active');
+            document.getElementById('adminDashboard').classList.remove('active');
+            document.getElementById('loginSection').classList.add('active');
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-3px)';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

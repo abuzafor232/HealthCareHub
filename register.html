@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - HealthCareHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">HealthCareHub</div>
+            <div class="tagline">AI-Driven Virtual Medical Assistant</div>
+        </div>
+
+        <!-- Register Section -->
+        <div class="content active">
+            <div class="login-section">
+                <h2 class="login-title">Create Your Account</h2>
+                <form class="login-form" id="registerForm">
+                    <!-- Personal Information -->
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" placeholder="Enter your phone number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" class="form-input" required>
+                    </div>
+                    
+                    <!-- Account Details -->
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-input" placeholder="Choose a username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" placeholder="Create a strong password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-input" placeholder="Confirm your password" required>
+                    </div>
+                    
+                    <!-- User Type -->
+                    <div class="form-group">
+                        <label class="form-label">Register as</label>
+                        <select class="form-input" required>
+                            <option value="">Select account type</option>
+                            <option value="patient">Patient</option>
+                            <option value="healthcare">Healthcare Provider</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Healthcare Provider Specific (Conditional) -->
+                    <div class="form-group" id="providerFields" style="display: none;">
+                        <label class="form-label">Medical License Number</label>
+                        <input type="text" class="form-input" placeholder="Enter your medical license number">
+                        
+                        <label class="form-label" style="margin-top: 10px;">Specialization</label>
+                        <input type="text" class="form-input" placeholder="e.g., Cardiology, Pediatrics">
+                        
+                        <label class="form-label" style="margin-top: 10px;">Hospital/Clinic Name</label>
+                        <input type="text" class="form-input" placeholder="Your affiliated institution">
+                    </div>
+                    
+                    <!-- Terms and Conditions -->
+                    <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms" class="form-label" style="margin: 0; font-size: 14px;">
+                            I agree to the <a href="#" style="color: #4f46e5;">Terms of Service</a> and <a href="#" style="color: #4f46e5;">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn">Create Account</button>
+                    
+                    <!-- Login Link -->
+                    <p style="text-align: center; margin-top: 20px; color: #6b7280;">
+                        Already have an account? 
+                        <a href="index.html" style="color: #4f46e5; text-decoration: none;">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="bottom-nav-item" onclick="window.location.href='index.html'">
+                <div class="bottom-nav-icon">←</div>
+                <div class="bottom-nav-text">Back to Login</div>
+            </div>
+            <div class="bottom-nav-item">
+                <div class="bottom-nav-icon">🏠</div>
+                <div class="bottom-nav-text">Home</div>
+            </div>
+            <div class="bottom-nav-item">
+                <div class="bottom-nav-icon">💬</div>
+                <div class="bottom-nav-text">Support</div>
+            </div>
+            <div class="bottom-nav-item">
+                <div class="bottom-nav-icon">👤</div>
+                <div class="bottom-nav-text">Profile</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle form submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Registration successful! Please check your email for verification.');
+            window.location.href = 'index.html';
+        });
+
+        // Show/hide healthcare provider fields based on selection
+        document.querySelector('select').addEventListener('change', function() {
+            const providerFields = document.getElementById('providerFields');
+            if (this.value === 'healthcare') {
+                providerFields.style.display = 'block';
+                providerFields.querySelectorAll('input').forEach(input => input.required = true);
+            } else {
+                providerFields.style.display = 'none';
+                providerFields.querySelectorAll('input').forEach(input => input.required = false);
+            }
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const formInputs = document.querySelectorAll('.form-input');
+            formInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = '#4f46e5';
+                    this.style.boxShadow = '0 0 0 3px rgba(79, 70, 229, 0.1)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = '#e2e8f0';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
